@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/api/api_manger.dart';
+import 'package:news/home/news/news_item.dart';
 import 'package:news/model/SourceResponse.dart';
 import 'package:news/model/newsResponse.dart';
 
@@ -12,6 +13,7 @@ class NewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     return FutureBuilder<NewsResponse>(
       future: ApiManger.getNewsSource(source.id ?? ''),
       builder: (context, snapshot) {
@@ -51,13 +53,11 @@ class NewsWidget extends StatelessWidget {
           );
         }
         var newList = snapshot.data?.articles ?? [];
-        return ListView.builder(
+        return ListView.separated(
           itemBuilder: (context, index) {
-            return Text(
-              newList[index].title ?? '',
-              style: Theme.of(context).textTheme.labelMedium,
-            );
-          },
+            return NewsItem(news: newList[index]);
+          }, separatorBuilder: (BuildContext context, int index) { return SizedBox(height:height*0.02,); },
+          itemCount: newList.length,
         );
       },
     );

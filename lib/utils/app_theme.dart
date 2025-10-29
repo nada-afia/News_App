@@ -6,18 +6,24 @@ class AppThem {
   static final ThemeData lightMode = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
     appBarTheme: const AppBarTheme(color: AppColors.white),
+    cardColor: AppColors.black,
+    indicatorColor: AppColors.black,
     textTheme: TextTheme(
       labelLarge: AppStyles.blackBold16,
       labelMedium: AppStyles.blackMed14,
+        labelSmall: AppStyles.blackMed24
     ),
   );
 
   static ThemeData darkMode = ThemeData.dark().copyWith(
     appBarTheme: AppBarTheme(color: AppColors.black),
+    cardColor: AppColors.white,
+    indicatorColor: AppColors.white,
     scaffoldBackgroundColor: AppColors.black,
     textTheme: TextTheme(
       labelLarge: AppStyles.whiteBold16,
       labelMedium: AppStyles.whiteMed14,
+        labelSmall: AppStyles.whiteMed24
     ),
   );
 }
