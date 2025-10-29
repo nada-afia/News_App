@@ -3,6 +3,7 @@ import 'package:news/home/category/widget/source_name.dart';
 import 'package:news/model/SourceResponse.dart';
 import 'package:news/utils/App_colors.dart';
 import '../news/news_widget.dart';
+
 class SourceTabWidget extends StatefulWidget {
   final List<Source> sourcesList;
 
