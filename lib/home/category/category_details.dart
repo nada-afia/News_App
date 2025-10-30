@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:news/api/api_manger.dart';
 import 'package:news/home/category/source_tab_widget.dart';
 import 'package:news/model/SourceResponse.dart';
+import 'package:news/model/category.dart';
 import 'package:news/utils/App_colors.dart';
 
 
-class CategoryDetails extends StatelessWidget {
-  const CategoryDetails({super.key});
+class CategoryDetails extends StatefulWidget {
+  final Category category;
+  const CategoryDetails({super.key, required this.category});
 
+  @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SourceResponse>(
-      future: ApiManger.getSources(),
+      future: ApiManger.getSources( categoryId:widget.category.id),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -29,7 +36,12 @@ class CategoryDetails extends StatelessWidget {
           return Column(
             children: [
               Text(snapshot.data!.message!),
-              ElevatedButton(onPressed: () {}, child: Text('Try Again')),
+              ElevatedButton(onPressed: () {
+                ApiManger.getSources(categoryId: widget.category.id);
+                setState(() {
+
+                });
+              }, child: Text('Try Again')),
             ],
           );
         }
