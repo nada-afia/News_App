@@ -3,9 +3,11 @@ import 'package:news/home/drawer/app_confg_item.dart';
 import 'package:news/home/drawer/divider_item.dart';
 import 'package:news/home/drawer/drawer_item.dart';
 import 'package:news/home/drawer/them/theme_bottom_sheet.dart';
+import 'package:news/providers/app_theme_provider.dart';
 import 'package:news/utils/App_colors.dart';
 import 'package:news/utils/app_images.dart';
 import 'package:news/utils/app_styles.dart';
+import 'package:provider/provider.dart';
 class HomeDrawer extends StatefulWidget {
     final VoidCallback onDrawerItemClick;
   const HomeDrawer({super.key, required this.onDrawerItemClick});
@@ -17,7 +19,7 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var themProvider=Provider.of<AppThemeProvider>(context);
     var height = MediaQuery.of(context).size.height;
     return Column(
       children: [
@@ -39,7 +41,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
          onTap: (){
            showThemeBottomSheet();
          },
-         child: AppConfIgItem(name: 'Dark',),
+         child: AppConfIgItem(name:themProvider.isDark()?'Dark':'Light',),
        ),
         SizedBox(height: height*0.02,),
         DividerItem(),

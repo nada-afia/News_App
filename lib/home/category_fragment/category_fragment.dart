@@ -11,7 +11,7 @@ class CategoryFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    categoryList = Category.getCategoryList(false);
+    categoryList = Category.getCategoryList(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
