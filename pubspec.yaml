@@ -40,6 +40,10 @@ dependencies:
   cached_network_image: ^3.4.1
   timeago: ^3.7.1
   provider: ^6.1.5+1
+  webview_flutter: ^4.4.2
+  webview_flutter_android: ^3.14.0
+  webview_flutter_wkwebview: ^3.13.0
+
 
 dev_dependencies:
   flutter_test:

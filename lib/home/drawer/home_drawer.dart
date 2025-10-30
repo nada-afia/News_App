@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:news/home/drawer/app_confg_item.dart';
 import 'package:news/home/drawer/divider_item.dart';
 import 'package:news/home/drawer/drawer_item.dart';
+import 'package:news/home/drawer/language/language_bottom_sheet.dart';
 import 'package:news/home/drawer/them/theme_bottom_sheet.dart';
+import 'package:news/providers/app_language_provider.dart';
 import 'package:news/providers/app_theme_provider.dart';
 import 'package:news/utils/App_colors.dart';
 import 'package:news/utils/app_images.dart';
@@ -20,6 +22,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
     var themProvider=Provider.of<AppThemeProvider>(context);
+    var languageProvider=Provider.of<AppLanguageProvider>(context);
+
     var height = MediaQuery.of(context).size.height;
     return Column(
       children: [
@@ -45,8 +49,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
        ),
         SizedBox(height: height*0.02,),
         DividerItem(),
-        DrawerItem(iconName: AppImages.language, textName: "Language"),
-        AppConfIgItem(name: 'English',),
+    DrawerItem(iconName: AppImages.language, textName: "Language"),
+        InkWell(
+          onTap: (){
+            showLanguageBottomSheet();
+          },
+          child: AppConfIgItem(name: languageProvider.isEnglish()?'English':'Arabic',),
+        ),
       ],
     );
   }
@@ -55,4 +64,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
       showModalBottomSheet(
         context: context, builder: (context) => ThemeBottomSheet(),);
     }
+
+  void showLanguageBottomSheet() {
+    showModalBottomSheet(
+      context: context, builder: (context) => LanguageBottomSheet(),);
+  }
 }
