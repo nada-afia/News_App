@@ -22,40 +22,42 @@ class _NewsBottomSheetState extends State<NewsBottomSheet> {
       horizontal: width * 0.03,
       vertical: height * 0.01,
     ),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: CachedNetworkImage(
-              imageUrl: widget.news.urlToImage ?? '',
-              placeholder: (context, url) =>
-                  CircularProgressIndicator(color: AppColors.gery),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
-          ),
-          SizedBox(height: height * 0.02),
-          Text(widget.news.content ?? '', style: Theme.of(context).textTheme.displayLarge),
-          SizedBox(height: height * 0.02),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).canvasColor,
-                minimumSize: const Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                imageUrl: widget.news.urlToImage ?? '',
+                placeholder: (context, url) =>
+                    CircularProgressIndicator(color: AppColors.gery),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              onPressed: () {
-                print('Opening URL: ${widget.news.url}');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewsWebView(url: widget.news.url ?? ''),
+            ),
+            SizedBox(height: height * 0.02),
+            Text(widget.news.content ?? '', style: Theme.of(context).textTheme.displayLarge),
+            SizedBox(height: height * 0.02),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).canvasColor,
+                  minimumSize: const Size(double.infinity, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-
-                );
-              },
-              child: Text('View Full Article',style: Theme.of(context).textTheme.labelLarge,))
-        ],
+                ),
+                onPressed: () {
+                  print('Opening URL: ${widget.news.url}');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewsWebView(url: widget.news.url ?? ''),
+                    ),
+        
+                  );
+                },
+                child: Text('View Full Article',style: Theme.of(context).textTheme.labelLarge,))
+          ],
+        ),
       ),
     );
   }

@@ -37,4 +37,17 @@ class ApiManger {
       rethrow;
     }
   }
+  static Future<NewsResponse> searchNews(String query) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, EndPoints.newsApi, {
+      'apiKey': ApiConstants.apiKey,
+      'q': query,
+    });
+
+    try {
+      var response = await http.get(url);
+        return NewsResponse.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

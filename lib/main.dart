@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/providers/app_language_provider.dart';
 import 'package:news/providers/app_theme_provider.dart';
 import 'package:news/utils/app_routes.dart';
 import 'package:news/utils/app_theme.dart';
@@ -7,10 +8,11 @@ import 'package:provider/provider.dart';
 import 'home/home_screen.dart';
 
 void main(){
-  
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
       MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => AppThemeProvider(),)
+        ChangeNotifierProvider(create: (context) => AppThemeProvider(),),
+        ChangeNotifierProvider(create: (context) => AppLanguageProvider(),)
       ],
       
       child:MyApp() ,)
