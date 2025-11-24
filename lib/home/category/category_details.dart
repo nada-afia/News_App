@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/di/di.dart';
 import 'package:news/home/category/cubit/caegory_states.dart';
 import 'package:news/home/category/cubit/category_view_model.dart';
 import 'package:news/home/category/source_tab_widget.dart';
@@ -16,7 +17,7 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  CubitViewModel cubitViewModel =CubitViewModel();
+  CubitViewModel cubitViewModel =CubitViewModel(sourceRepository: injectSourceRepository());
   @override
   @override
   void initState() {
