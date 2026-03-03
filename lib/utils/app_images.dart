@@ -17,5 +17,6 @@ class AppImages {
   static const String home = 'assets/images/home.png';
   static const String theme = 'assets/images/theme.png';
   static const String language = 'assets/images/language.png';
-
+  static const String search = 'assets/images/Search.png';
+  static const String searchDark = 'assets/images/Search_dark.png';
 }
